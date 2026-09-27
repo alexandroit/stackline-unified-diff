@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       bootstrap:
-        description: Use the temporary Prod NPM_BOOTSTRAP_TOKEN only for the first package version
+        description: Use the temporary Prod NPM_BOOTSTRAP_TOKEN for the authorized existing-package 1.0.1 release
         required: true
         default: false
         type: boolean
@@ -96,7 +96,7 @@ jobs:
           set -euo pipefail
           [[ "$EXPECTED_SOURCE_COMMIT" =~ ^[0-9a-f]{40}$ ]]
           [[ "$EXPECTED_PUBLICATION_RUN" =~ ^https://github.com/alexandroit/stackline-unified-diff/actions/runs/[0-9]+/attempts/[0-9]+$ ]]
-      - name: Enforce first-version bootstrap or established-package OIDC
+      - name: Enforce the authorized 1.0.1 token release or established-package OIDC
         if: steps.registry.outputs.published == 'false'
         env:
           BOOTSTRAP: ${{ inputs.bootstrap }}
@@ -106,13 +106,13 @@ jobs:
           set -euo pipefail
           version="$(node -p "require('./package.json').version")"
           if [[ "$BOOTSTRAP" == "true" ]]; then
-            test "$version" = "1.0.0"
-            test "$PACKAGE_EXISTS" = "false"
+            test "$version" = "1.0.1"
+            test "$PACKAGE_EXISTS" = "true"
           else
             test "$PACKAGE_EXISTS" = "true"
           fi
-      - name: Require the temporary first-publication token
-        if: steps.registry.outputs.published == 'false' && steps.registry.outputs.package_exists == 'false' && inputs.bootstrap == true
+      - name: Require the temporary authorized-release token
+        if: steps.registry.outputs.published == 'false' && steps.registry.outputs.package_exists == 'true' && inputs.bootstrap == true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_BOOTSTRAP_TOKEN }}
         shell: bash
@@ -120,8 +120,8 @@ jobs:
       - name: Publish the exact CI tarball with OIDC and provenance
         if: steps.registry.outputs.published == 'false' && steps.registry.outputs.package_exists == 'true' && inputs.bootstrap == false
         run: npm publish ./artifact/*.tgz --access public --provenance --ignore-scripts
-      - name: Bootstrap the first version from the exact CI tarball
-        if: steps.registry.outputs.published == 'false' && steps.registry.outputs.package_exists == 'false' && inputs.bootstrap == true
+      - name: Publish the authorized 1.0.1 from the exact CI tarball
+        if: steps.registry.outputs.published == 'false' && steps.registry.outputs.package_exists == 'true' && inputs.bootstrap == true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_BOOTSTRAP_TOKEN }}
         run: npm publish ./artifact/*.tgz --access public --provenance --ignore-scripts

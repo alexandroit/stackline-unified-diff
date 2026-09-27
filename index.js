@@ -95,7 +95,7 @@ export default function diff() {
           'data',
           /**
            * @param {string} type
-           * @param {{lines: string, aPath: string, bPath: string}} data
+           * @param {{lines: string[], aPath: string, bPath: string}} data
            */
           (type, data) => {
             if (type !== 'patch') return
@@ -103,7 +103,7 @@ export default function diff() {
             const lines = data.lines
             // Binary and mode-only changes have no text hunks to filter.
             if (lines.length === 0) return
-            const re = /^@@ -(\d+),?(\d+)? \+(\d+),?(\d+)? @@/
+            const re = /^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/
             const match = lines[0].match(re)
 
             // Should not happen, maybe if Git returns weird diffs?
@@ -112,16 +112,20 @@ export default function diff() {
 
             /** @type {[number, number][]} */
             const ranges = []
-            const start = Number.parseInt(match[3], 10) - 1
+            let lineNumber = Number.parseInt(match[3], 10) - 1
             let index = 0
             /** @type {number|undefined} */
             let position
 
             while (++index < lines.length) {
               const line = lines[index]
+              const hunk = line.match(re)
 
-              if (line.charAt(0) === '+') {
-                const no = start + index
+              if (hunk) {
+                lineNumber = Number.parseInt(hunk[3], 10) - 1
+                position = undefined
+              } else if (line.charAt(0) === '+') {
+                const no = ++lineNumber
 
                 if (position === undefined) {
                   position = ranges.length
@@ -130,6 +134,9 @@ export default function diff() {
                   ranges[position][1] = no
                 }
               } else {
+                // Only context lines also exist in the new file. Removed lines
+                // and Git's no-newline markers must not advance its position.
+                if (line.charAt(0) === ' ') lineNumber++
                 position = undefined
               }
             }
