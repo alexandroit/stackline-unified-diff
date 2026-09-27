@@ -5,7 +5,7 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import { setTimeout as delay } from 'node:timers/promises'
-import { retryAttestationAudit, retryRegistryInstall, validateProvenanceStatement } from './registry-requests.mjs'
+import { fetchExpectedAttestation, retryAttestationAudit, retryRegistryInstall, validateProvenanceStatement } from './registry-requests.mjs'
 
 const archive = path.resolve(process.argv[2])
 const localBytes = await readFile(archive)
@@ -40,7 +40,7 @@ assert(official.dist.attestations?.url, 'registry provenance is required')
 assert.equal(official.dist.attestations.provenance.predicateType, 'https://slsa.dev/provenance/v1')
 const attestationUrl = new URL(official.dist.attestations.url)
 assert.equal(attestationUrl.origin, registry)
-const attestations = await (await get(attestationUrl)).json()
+const attestations = await (await fetchExpectedAttestation(attestationUrl, identity)).json()
 const provenanceEntries = attestations.attestations.filter((entry) => entry.predicateType === 'https://slsa.dev/provenance/v1')
 assert.equal(provenanceEntries.length, 1, 'exactly one npm provenance attestation is required')
 const provenance = provenanceEntries[0]
