@@ -1,0 +1,20 @@
+{
+  "name": "unified-diff",
+  "version": "4.0.1",
+  "repository": "https://github.com/unifiedjs/unified-diff",
+  "gitHead": "73a4d0a69b7f2aeffbb149ea2dde5eae76da6031",
+  "sourceStatus": "gitHead source available",
+  "published": "2021-10-20T14:07:40.470Z",
+  "tarball": "https://registry.npmjs.org/unified-diff/-/unified-diff-4.0.1.tgz",
+  "integrity": "sha512-qiI0GaHi/50NVrChnmZOBeB0aNhHRMG6VnjKEAikaQD/I3gxjTsDp8gycCOUxyVCJrV/Rv3y6zEWMZczO+o3Lw==",
+  "license": "MIT",
+  "reviewedOn": "2026-09-27",
+  "upstreamIssueReview": {
+    "openIssuesFound": 0,
+    "references": [
+      "https://github.com/unifiedjs/unified-diff/issues/7",
+      "https://github.com/unifiedjs/unified-diff/pull/6"
+    ],
+    "notes": "Issue 7 and PR 6 concern README import/typo corrections. Binary and mode-only patch crashes addressed here were reproduced locally, not attributed to an upstream issue."
+  }
+}

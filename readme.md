@@ -1,3 +1,9 @@
+# @stackline/unified-diff
+
+A scoped maintenance fork of `unified-diff@4.0.1` by Titus Wormer (MIT). The unified plugin and API are retained, with `@stackline/git-diff-tree@1.0.0` replacing deprecated transitive stream dependencies. Binary and mode-only patches no longer throw when no text hunk is present. Requires Node.js 18 or newer and Git on PATH.
+
+Install with `npm install @stackline/unified-diff`; import with `import unifiedDiff from "@stackline/unified-diff"`. `UPSTREAM.json` identifies the released source and integrity. `npm test` runs the original Travis/GitHub Actions scenarios and focused regressions. `npm run build` and `npm run lint` check JavaScript syntax; `npm run test:package` tests a fresh packed consumer install.
+
 # unified-diff
 
 [![Build][build-badge]][build]
@@ -30,7 +36,7 @@ Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
 [npm][]:
 
 ```sh
-npm install unified-diff
+npm install @stackline/unified-diff
 ```
 
 ## Use
@@ -61,7 +67,7 @@ We have some natural language checking in `lint.js`:
 import {toVFile} from 'to-vfile'
 import {reporter} from 'vfile-reporter'
 import {unified} from 'unified'
-import unifiedDiff from 'unified-diff'
+import unifiedDiff from '@stackline/unified-diff'
 import remarkParse from 'remark-parse'
 import remarkStringify from 'remark-stringify'
 import remarkRetext from 'remark-retext'
