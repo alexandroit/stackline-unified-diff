@@ -1,9 +1,10 @@
 {
   "name": "@stackline/unified-diff",
-  "version": "1.0.1",
-  "description": "unified plugin to ignore unrelated messages",
+  "version": "1.0.2",
+  "description": "Filter unified diagnostics to changed Git lines while preserving the unified-diff plugin API",
   "license": "MIT",
   "keywords": [
+    "stackline",
     "unified",
     "unified-plugin",
     "remark",
@@ -13,7 +14,9 @@
     "travis",
     "difference",
     "diff",
-    "pr"
+    "pr",
+    "git",
+    "diagnostics"
   ],
   "repository": {
     "type": "git",

@@ -1,17 +1,23 @@
 # @stackline/unified-diff
 
+> Filter unified diagnostics to changed Git lines while preserving the unified-diff plugin API.
+
+[![npm version](https://img.shields.io/npm/v/@stackline/unified-diff.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/unified-diff)
+[![license](https://img.shields.io/npm/l/@stackline/unified-diff.svg?style=flat-square)](https://github.com/alexandroit/stackline-unified-diff/blob/main/license)
+[![GitHub repository](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-unified-diff)
+
+**[Documentation](https://github.com/alexandroit/stackline-unified-diff#readme)** |
+**[npm](https://www.npmjs.com/package/@stackline/unified-diff)** |
+**[Issues](https://github.com/alexandroit/stackline-unified-diff/issues)** |
+**[Repository](https://github.com/alexandroit/stackline-unified-diff)**
+
+**Package version:** `1.0.2`
+
+## Why this package?
+
 A scoped maintenance fork of `unified-diff@4.0.1` by Titus Wormer (MIT). The unified plugin and API are retained, with `@stackline/git-diff-tree@1.0.0` replacing deprecated transitive stream dependencies. Binary and mode-only patches no longer throw when no text hunk is present. Version 1.0.1 also fixes inherited changed-line accounting for replacements and multiple Git hunks. Requires Node.js 18 or newer and Git on PATH.
 
 Install with `npm install @stackline/unified-diff`; import with `import unifiedDiff from "@stackline/unified-diff"`. `UPSTREAM.json` identifies the released source and integrity. `npm test` runs the original Travis/GitHub Actions scenarios and focused regressions. `npm run build` and `npm run lint` check JavaScript syntax; `npm run test:package` tests a fresh packed consumer install.
-
-# unified-diff
-
-[![Build][build-badge]][build]
-[![Coverage][coverage-badge]][coverage]
-[![Downloads][downloads-badge]][downloads]
-[![Sponsors][sponsors-badge]][collective]
-[![Backers][backers-badge]][collective]
-[![Chat][chat-badge]][chat]
 
 [**unified**][unified] plugin to ignore unrelated messages.
 Currently works in PRs on Travis and GitHub Actions.
@@ -28,7 +34,24 @@ This plugin solves that problem, when in CIs, by ignoring any messages on
 unchanged lines.
 When run outside supported CIs this plugin doesn’t do anything.
 
-## Install
+## Compatibility
+
+| Item | Value |
+| --- | --- |
+| Package | `@stackline/unified-diff@1.0.2` |
+| Supported Node.js | `>=18` |
+| Module entry | `index.js` (ES modules) |
+| Runtime dependencies | 2 direct dependencies |
+| Types | `index.d.ts` |
+| External tool | Git available on `PATH` |
+
+## Installation
+
+```bash
+npm install @stackline/unified-diff
+```
+
+<a id="install"></a>
 
 This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
 Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
@@ -39,7 +62,9 @@ Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
 npm install @stackline/unified-diff
 ```
 
-## Use
+## Usage
+
+<a id="use"></a>
 
 Say we have this `readme.md`.
 Note the `an an`.
@@ -135,7 +160,13 @@ index 360b225..5a96b86 100644
 This time our lint task exits successfully, even though L1 would normally emit
 an error, but it’s unrelated to the PR.
 
-## API
+## Security
+
+Filtering diagnostics does not validate the content of a change. The plugin preserves added-line accounting across multiple hunks and skips binary or mode-only changes without text hunks.
+
+## API Surface
+
+<a id="api"></a>
 
 This package exports a plugin as the default export.
 
@@ -155,7 +186,20 @@ nothing.
 
 PRs welcome!
 
-## Contribute
+## Local Development
+
+Clone the [repository](https://github.com/alexandroit/stackline-unified-diff) and run the following commands from its root:
+
+```bash
+npm ci
+npm run build
+npm test
+npm run lint
+```
+
+The retained upstream development notes below include historical tooling; the commands above are the maintained package checks.
+
+### Contribute
 
 See [`contributing.md`][contributing] in [`unifiedjs/.github`][health] for ways
 to get started.
@@ -165,7 +209,29 @@ This project has a [code of conduct][coc].
 By interacting with this repository, organization, or community you agree to
 abide by its terms.
 
+## Consumer Smoke Test
+
+`npm run test:package` packs the library and exercises an isolated consumer using the repository fixture.
+
+## Release Checklist
+
+1. Update the package version, lockfile, generated version fields, and changelog together.
+2. Run the development checks above and audit both `npm audit` and `npm audit --omit=dev`.
+3. Use the [GitHub publish workflow](https://github.com/alexandroit/stackline-unified-diff/actions/workflows/publish.yml) with its `Prod` environment to publish the exact CI tarball.
+4. Verify public npm bytes, package identity, provenance, and the immutable GitHub release evidence.
+
+## Community and Support
+
+Report reproducible package issues in the [issue tracker](https://github.com/alexandroit/stackline-unified-diff/issues).
+
+- [Stackline / Alexandro.Net](https://alexandro.net/)
+- [GitHub](https://github.com/alexandroit)
+- [Maintainer LinkedIn](https://www.linkedin.com/in/aleinfo/)
+- [Reddit community: r/Stackline](https://www.reddit.com/r/Stackline/)
+
 ## License
+
+[MIT](https://github.com/alexandroit/stackline-unified-diff/blob/main/license). Original copyright notices and upstream attribution are retained.
 
 [MIT][license] © [Titus Wormer][author]
 
@@ -212,3 +278,5 @@ abide by its terms.
 [alex]: https://github.com/wooorm/alex
 
 [retext]: https://github.com/retextjs/retext/blob/HEAD/doc/plugins.md#list-of-plugins
+
+See [NOTICE](https://github.com/alexandroit/stackline-unified-diff/blob/main/NOTICE) for retained attribution.

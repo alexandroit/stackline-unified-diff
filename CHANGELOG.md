@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2 (2026-09-28)
+
+- Standardize package documentation, preserve the API reference and upstream attribution, and add Stackline community links.
+- Add focused npm discovery keywords and consistent repository metadata.
+- Keep runtime behavior and dependency versions unchanged.
+- Correct the pinned artifact-upload action commit while preserving the publish.yml workflow and Prod environment.
+
 ## 1.0.1
 
 - Count new-file line positions from each Git hunk header. Removed lines and no-newline markers no longer shift diagnostics away from replacements.
