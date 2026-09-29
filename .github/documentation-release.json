@@ -4,7 +4,7 @@
     {
       "name": "@stackline/unified-diff",
       "path": "readme.md",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "baselineVersion": "1.0.3",
       "keywords": [
         "stackline",
@@ -28,8 +28,8 @@
       "homepage": "https://alexandro.net/docs/vanilla/unified-diff/",
       "baselineTarball": "https://registry.npmjs.org/@stackline/unified-diff/-/unified-diff-1.0.3.tgz",
       "baselineIntegrity": "sha512-o0PePrAb6s158Wi38UXZ462llAVN3eBRnVeyDXayNSWsXSw+QQUAtSHlBe+uNacePDxpw1pstTb4natbO4p0mQ==",
-      "expectedSha512": "d239a86eced8e187f1360405fce23a7d24ca4b914fde31f4abaeea5c1d8ffefcde65876c24aec5e6a277606851b380047e755ec11ee78f763520a7e51fe71857",
-      "tag": "docs-stackline-unified-diff-v1.0.4"
+      "expectedSha512": "a48f3761310147b5ea9bd24777635f6cbf85419b7773b3731a4a799b9fd397683dadab5fa73dd072312d9bf6eaacea46c3dffde7b115284b57fc2bca20f6cb83",
+      "tag": "docs-stackline-unified-diff-v1.0.5"
     }
   ]
 }

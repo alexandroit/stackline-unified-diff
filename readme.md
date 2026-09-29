@@ -4,13 +4,13 @@
 
 [![npm version](https://img.shields.io/npm/v/@stackline/unified-diff.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/unified-diff)
 [![license](https://img.shields.io/npm/l/@stackline/unified-diff.svg?style=flat-square)](https://github.com/alexandroit/stackline-unified-diff)
-[![GitHub repository](https://img.shields.io/badge/GitHub-alexandroit%2Fstackline-unified-diff-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-unified-diff)
+[![GitHub repository](https://img.shields.io/badge/GitHub-repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-unified-diff)
 [![Docs](https://img.shields.io/badge/docs-alexandro.net-0f766e?style=flat-square)](https://alexandro.net/docs/vanilla/unified-diff/)
 [![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
 
 **[Documentation](https://alexandro.net/docs/vanilla/unified-diff/)** | **[npm](https://www.npmjs.com/package/@stackline/unified-diff)** | **[Issues](https://github.com/alexandroit/stackline-unified-diff/issues)** | **[Repository](https://github.com/alexandroit/stackline-unified-diff)**
 
-**Current package version:** `1.0.4`
+**Current package version:** `1.0.5`
 
 ---
 
@@ -39,7 +39,7 @@ When run outside supported CIs this plugin doesn’t do anything.
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/unified-diff@1.0.4` |
+| Package | `@stackline/unified-diff@1.0.5` |
 | Supported Node.js | `>=18` |
 | Module entry | `index.js` (ES modules) |
 | Runtime dependencies | 2 direct dependencies |
