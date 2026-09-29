@@ -1,6 +1,6 @@
 {
   "name": "@stackline/unified-diff",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Filter unified diagnostics to changed Git lines while preserving the unified-diff plugin API",
   "license": "MIT",
   "keywords": [
@@ -46,16 +46,16 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@stackline/git-diff-tree": "1.0.0",
-    "vfile-find-up": "^6.0.0"
+    "@stackline/git-diff-tree": "1.0.1",
+    "vfile-find-up": "npm:@stackline/vfile-find-up@1.0.0"
   },
   "devDependencies": {
-    "unified": "10.1.2",
-    "retext-english": "4.1.0",
-    "retext-stringify": "3.1.0",
+    "unified": "npm:@stackline/unified@1.0.0",
+    "retext-english": "npm:@stackline/retext-english@1.0.0",
+    "retext-stringify": "npm:@stackline/retext-stringify@1.0.0",
     "unist-util-visit": "4.1.2",
-    "nlcst-to-string": "3.1.1",
-    "to-vfile": "7.2.4"
+    "nlcst-to-string": "npm:@stackline/nlcst-to-string@1.0.0",
+    "to-vfile": "npm:@stackline/to-vfile@1.0.0"
   },
   "scripts": {
     "test": "node --test test/*.test.js",

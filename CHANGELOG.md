@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 - 2026-09-28
+
+- Replace stale direct runtime and development dependencies with verified Stackline maintenance forks, preserving existing import names and compatibility tests.
+
 ## 1.0.2 (2026-09-28)
 
 - Standardize package documentation, preserve the API reference and upstream attribution, and add Stackline community links.

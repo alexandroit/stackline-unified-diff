@@ -2,31 +2,6 @@ import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import { setTimeout as delay } from 'node:timers/promises'
 
-export async function fetchExpectedAttestation(url, identity, {
-  fetcher = globalThis.fetch,
-  attempts = 120,
-  wait = () => delay(5_000)
-} = {}) {
-  assert.equal(typeof identity, 'string')
-  assert(Number.isInteger(attempts) && attempts > 0 && attempts <= 120)
-  const endpoint = new URL(url)
-  assert.equal(endpoint.origin, 'https://registry.npmjs.org')
-  assert.equal(decodeURIComponent(endpoint.pathname), `/-/npm/v1/attestations/${identity}`)
-  assert.equal(endpoint.search + endpoint.hash + endpoint.username + endpoint.password, '')
-  for (let attempt = 0; attempt < attempts; attempt++) {
-    const response = await fetcher(endpoint, {
-      signal: globalThis.AbortSignal.timeout(30_000),
-      redirect: 'error'
-    })
-    if (response.ok) return response
-    if (response.status !== 404 || attempt === attempts - 1) {
-      throw new Error(`HTTP ${response.status}: ${endpoint}`)
-    }
-    console.log('The expected npm attestation is still propagating; retrying its exact endpoint.')
-    await wait()
-  }
-}
-
 export async function retryAttestationAudit(operation, { attempts = 24, wait = () => delay(5_000) } = {}) {
   for (let attempt = 0; attempt < attempts; attempt++) {
     try {

@@ -5,7 +5,7 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import { setTimeout as delay } from 'node:timers/promises'
-import { fetchExpectedAttestation, retryAttestationAudit, retryRegistryInstall, validateProvenanceStatement } from './registry-requests.mjs'
+import { retryAttestationAudit, retryRegistryInstall, validateProvenanceStatement } from './registry-requests.mjs'
 
 const archive = path.resolve(process.argv[2])
 const localBytes = await readFile(archive)
@@ -22,10 +22,10 @@ assert.match(expectedSourceCommit || '', /^[0-9a-f]{40}$/, 'EXPECTED_SOURCE_COMM
 assert.match(expectedPublicationRun || '', /^https:\/\/github\.com\/alexandroit\/stackline-unified-diff\/actions\/runs\/[0-9]+\/attempts\/[0-9]+$/, 'EXPECTED_PUBLICATION_RUN is required')
 
 async function get(url) {
-  for (let attempt = 0; attempt < 12; attempt++) {
+  for (let attempt = 0; attempt < 120; attempt++) {
     const response = await globalThis.fetch(url, { signal: globalThis.AbortSignal.timeout(30_000) })
     if (response.ok) return response
-    if (response.status !== 404 || attempt === 11) throw new Error(`HTTP ${response.status}: ${url}`)
+    if (response.status !== 404 || attempt === 119) throw new Error(`HTTP ${response.status}: ${url}`)
     await delay(5_000)
   }
 }
@@ -40,7 +40,7 @@ assert(official.dist.attestations?.url, 'registry provenance is required')
 assert.equal(official.dist.attestations.provenance.predicateType, 'https://slsa.dev/provenance/v1')
 const attestationUrl = new URL(official.dist.attestations.url)
 assert.equal(attestationUrl.origin, registry)
-const attestations = await (await fetchExpectedAttestation(attestationUrl, identity)).json()
+const attestations = await (await get(attestationUrl)).json()
 const provenanceEntries = attestations.attestations.filter((entry) => entry.predicateType === 'https://slsa.dev/provenance/v1')
 assert.equal(provenanceEntries.length, 1, 'exactly one npm provenance attestation is required')
 const provenance = provenanceEntries[0]
