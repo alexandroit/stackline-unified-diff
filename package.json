@@ -1,10 +1,14 @@
 {
   "name": "@stackline/unified-diff",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Filter unified diagnostics to changed Git lines while preserving the unified-diff plugin API",
   "license": "MIT",
   "keywords": [
     "stackline",
+    "npm-package",
+    "unified-diff",
+    "typescript",
+    "nodejs",
     "unified",
     "unified-plugin",
     "remark",
@@ -63,7 +67,7 @@
     "lint": "node scripts/check.cjs",
     "test:package": "node scripts/test-package.cjs"
   },
-  "homepage": "https://github.com/alexandroit/stackline-unified-diff#readme",
+  "homepage": "https://alexandro.net/docs/vanilla/unified-diff/",
   "publishConfig": {
     "access": "public"
   },
