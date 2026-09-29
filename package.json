@@ -1,6 +1,6 @@
 {
   "name": "@stackline/unified-diff",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Filter unified diagnostics to changed Git lines while preserving the unified-diff plugin API",
   "license": "MIT",
   "keywords": [
