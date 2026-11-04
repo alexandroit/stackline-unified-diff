@@ -50,13 +50,13 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@stackline/git-diff-tree": "1.0.3",
+    "@stackline/git-diff-tree": "1.0.4",
     "vfile-find-up": "npm:@stackline/vfile-find-up@1.0.2"
   },
   "devDependencies": {
-    "unified": "npm:@stackline/unified@1.0.2",
-    "retext-english": "npm:@stackline/retext-english@1.0.2",
-    "retext-stringify": "npm:@stackline/retext-stringify@1.0.2",
+    "unified": "npm:@stackline/unified@1.0.3",
+    "retext-english": "npm:@stackline/retext-english@1.0.3",
+    "retext-stringify": "npm:@stackline/retext-stringify@1.0.3",
     "unist-util-visit": "4.1.2",
     "nlcst-to-string": "npm:@stackline/nlcst-to-string@1.0.2",
     "to-vfile": "npm:@stackline/to-vfile@1.0.2"
