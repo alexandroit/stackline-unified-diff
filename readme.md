@@ -10,7 +10,7 @@
 
 **[Documentation](https://alexandro.net/docs/vanilla/unified-diff/)** | **[npm](https://www.npmjs.com/package/@stackline/unified-diff)** | **[Issues](https://github.com/alexandroit/stackline-unified-diff/issues)** | **[Repository](https://github.com/alexandroit/stackline-unified-diff)**
 
-**Current package version:** `1.0.5`
+**Current package version:** `1.0.6`
 
 ---
 
@@ -39,7 +39,7 @@ When run outside supported CIs this plugin doesn’t do anything.
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/unified-diff@1.0.5` |
+| Package | `@stackline/unified-diff@1.0.6` |
 | Supported Node.js | `>=18` |
 | Module entry | `index.js` (ES modules) |
 | Runtime dependencies | 2 direct dependencies |
